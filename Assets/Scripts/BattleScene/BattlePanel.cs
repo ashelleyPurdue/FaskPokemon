@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup))]
 public class BattlePanel : MonoBehaviour
 {
-    public const float SHOW_TIME = 0.2f;    //How long it takes to hide/show
+    public const float SHOW_TIME = 0.1f;    //How long it takes to hide/show
 
     private CanvasGroup canvasGroup;
 
