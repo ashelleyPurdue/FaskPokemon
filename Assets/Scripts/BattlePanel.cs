@@ -42,6 +42,7 @@ public class BattlePanel : MonoBehaviour
         currentState = State.hidden;
 
         canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = hiddenAlpha;
     }
 
@@ -64,6 +65,8 @@ public class BattlePanel : MonoBehaviour
     {
         //Show the panel
         canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+
         currentState = State.showing;
         timer = 0f;
     }
@@ -72,6 +75,8 @@ public class BattlePanel : MonoBehaviour
     {
         //Hide the panel
         canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
         currentState = State.hiding;
         timer = 0f;
     }
