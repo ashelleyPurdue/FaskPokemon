@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 701671049}
   - component: {fileID: 701671048}
   m_Layer: 5
-  m_Name: Move3Button
+  m_Name: Move2Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +817,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 701671049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 429588255}
+        m_MethodName: UseMove
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &701671049
@@ -1026,7 +1037,7 @@ GameObject:
   - component: {fileID: 1045670912}
   - component: {fileID: 1045670911}
   m_Layer: 5
-  m_Name: Move4Button
+  m_Name: Move3Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,7 +1100,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1045670912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 429588255}
+        m_MethodName: UseMove
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1045670912
@@ -1229,12 +1251,12 @@ Prefab:
     - target: {fileID: 224987628241877146, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224829699669107860, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf0cef96d11f4f540b8515c50194cf6a, type: 2}
@@ -1373,7 +1395,7 @@ GameObject:
   - component: {fileID: 1439421217}
   - component: {fileID: 1439421216}
   m_Layer: 5
-  m_Name: Move2Button
+  m_Name: Move1Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,7 +1460,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 429588255}
-        m_MethodName: UseDummyMove
+        m_MethodName: UseMove
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1569,7 +1591,7 @@ GameObject:
   - component: {fileID: 1715747366}
   - component: {fileID: 1715747365}
   m_Layer: 5
-  m_Name: Move1Button
+  m_Name: Move0Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1634,7 +1656,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 429588255}
-        m_MethodName: UseDummyMove
+        m_MethodName: UseMove
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1862,12 +1884,12 @@ Prefab:
     - target: {fileID: 224987628241877146, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224829699669107860, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf0cef96d11f4f540b8515c50194cf6a, type: 2}
