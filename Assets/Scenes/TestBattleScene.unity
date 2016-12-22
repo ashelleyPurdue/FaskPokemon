@@ -1746,23 +1746,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224987628241877146, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224987628241877146, guid: bf0cef96d11f4f540b8515c50194cf6a,
-        type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224829699669107860, guid: bf0cef96d11f4f540b8515c50194cf6a,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224829699669107860, guid: bf0cef96d11f4f540b8515c50194cf6a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf0cef96d11f4f540b8515c50194cf6a, type: 2}
