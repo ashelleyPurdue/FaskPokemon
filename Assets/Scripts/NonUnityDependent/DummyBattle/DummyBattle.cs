@@ -1,6 +1,7 @@
-﻿using System.Threading;
+﻿using System.Collections;
 using System.Collections.Generic;
 
+[System.Obsolete]
 public class DummyBattle
 {
     //Subscribable events
@@ -14,11 +15,10 @@ public class DummyBattle
     public event CommandExecutedHanlder OnPlayerCommandExecuted;
     public event CommandExecutedHanlder OnEnemyCommandExecuted;
 
+
     //Fields
     public DummyPokemon playerPokemon { get; private set; }
     public DummyPokemon enemyPokemon { get; private set; }
-
-    private bool isThreadRunning = false;
 
 
     //Constructors
@@ -31,41 +31,27 @@ public class DummyBattle
 
 
     //Interface
-    public void DoTurn(DummyBattleCommand playerCommand, DummyBattleCommand enemyCommand)
+    /*public System.Collections.IEnumerator ResumeTurn(DummyBattleCommand playerCommand, DummyBattleCommand enemyCommand)
     {
-        //Throw an exception if the turn thread is already running
-        if (isThreadRunning)
-        {
-            throw new System.Exception("Turn thread already running.  Please wait for it to finish!");
-        }
-
-        //Start the turn thread
-        isThreadRunning = true;
-
-        Thread turnThread = new Thread(DoTurnThread);
-        turnThread.Start(new DoTurnArgs(playerCommand, enemyCommand));
-    }
-
-
-    //Misc methods
-
-    private void DoTurnThread(object args)
-    {
-        //The the parameters from the arg
-        DoTurnArgs turnArgs = (DoTurnArgs)args;
-        DummyBattleCommand playerCommand = turnArgs.playerCommand;
-        DummyBattleCommand enemyCommand = turnArgs.enemyCommand;
-
         //TODO: Decide who goes first
 
         ExecuteCommand(playerCommand);
-        ExecuteCommand(enemyCommand);
+        OnPlayerCommandExecuted.Invoke(playerCommand);
+        yield return null;
 
-        //Send the event
+        ExecuteCommand(enemyCommand);
+        OnEnemyCommandExecuted.Invoke(enemyCommand);
+        yield return null;
+
+        //End the turn
         isThreadRunning = false;
         OnTurnEnded.Invoke();
-    }
-    
+
+        yield break;
+    }*/
+
+    //Misc methods
+
     private void ExecuteCommand(DummyBattleCommand command)
     {
         //If it's a move, use it.
@@ -81,20 +67,6 @@ public class DummyBattle
         {
             case 0: user.Tackle(target); break;
             case 1: user.PoisonSting(target); break;
-        }
-    }
-
-
-    //Nested classes
-    class DoTurnArgs
-    {
-        public DummyBattleCommand playerCommand;
-        public DummyBattleCommand enemyCommand;
-
-        public DoTurnArgs(DummyBattleCommand playerCommand, DummyBattleCommand enemyCommand)
-        {
-            this.playerCommand = playerCommand;
-            this.enemyCommand = enemyCommand;
         }
     }
 }
