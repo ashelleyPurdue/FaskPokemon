@@ -27,6 +27,15 @@ public class BattleUIManager : MonoBehaviour
         ChangePanels(initialPanel);
     }
 
+    void Update()
+    {
+        //Skip if space is pressed
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            WaitForSecondsOrSkip.Skip();
+        }
+    }
+
 
     //Interface
 
@@ -70,7 +79,7 @@ public class BattleUIManager : MonoBehaviour
             do { yield return ExecuteCommand(command); } while (executingCommand);
 
             //Wait
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsOrSkip(1f);
         }
 
         //Commands are done.  Show menus again
@@ -83,10 +92,7 @@ public class BattleUIManager : MonoBehaviour
         executingCommand = true;
 
         print("Executing command!");
-        for (int i = 0; i < 5; i++)
-        {
-            yield return new WaitForSeconds(1f);
-        }
+        yield return new WaitForSecondsOrSkip(5f);
         print("Done executing command");
 
         executingCommand = false;
