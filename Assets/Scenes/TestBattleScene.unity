@@ -633,6 +633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7386e59dc49cbc419b92858edf2883e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useMoveDelay: 1.5
+  playerHealthBar: {fileID: 1016603439}
+  enemyHealthBar: {fileID: 797430315}
   initialPanel: {fileID: 45895359}
 --- !u!4 &429588256
 Transform:
@@ -864,6 +867,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701671046}
+--- !u!114 &797430315 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114624838194615786, guid: bf0cef96d11f4f540b8515c50194cf6a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1175073837}
+  m_Script: {fileID: 11500000, guid: 925292ad20997cd4497f23ce3bbc67b4, type: 3}
 --- !u!1 &866031356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1034,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867014808}
+--- !u!114 &1016603439 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114624838194615786, guid: bf0cef96d11f4f540b8515c50194cf6a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1947229228}
+  m_Script: {fileID: 11500000, guid: 925292ad20997cd4497f23ce3bbc67b4, type: 3}
 --- !u!1 &1045670909
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BattleUIManager : MonoBehaviour
 {
+    public float useMoveDelay = 1f;         //How long to pause after using a move
+
+    public DiffableHealthBar playerHealthBar;
+    public DiffableHealthBar enemyHealthBar;
+
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
 
@@ -34,6 +39,10 @@ public class BattleUIManager : MonoBehaviour
         {
             WaitForSecondsOrSkip.Skip();
         }
+
+        //Update the health bars
+        playerHealthBar.currentValue = (float)playerPokemon.currentHealth / playerPokemon.maxHealth;
+        enemyHealthBar.currentValue = (float)enemyPokemon.currentHealth / enemyPokemon.maxHealth;
     }
 
 
@@ -79,7 +88,7 @@ public class BattleUIManager : MonoBehaviour
             do { yield return ExecuteCommand(command); } while (executingCommand);
 
             //Wait
-            yield return new WaitForSecondsOrSkip(1f);
+            yield return new WaitForSecondsOrSkip(useMoveDelay);
         }
 
         //Commands are done.  Show menus again
@@ -91,11 +100,25 @@ public class BattleUIManager : MonoBehaviour
         //TODO: Actually execute the command
         executingCommand = true;
 
-        print("Executing command!");
-        yield return new WaitForSecondsOrSkip(5f);
-        print("Done executing command");
+        if (command.commandType == DummyBattleCommandType.useMove)
+        {
+            //TODO: Start move animation
+
+            //TODO: Wait for a minimum amount of time, specified by the animation
+
+            //Execute the move
+            DummyPokemon user = command.userPokemon;
+            DummyPokemon target = command.targetPokemon;
+
+            switch (command.moveToUse)
+            {
+                case 0: user.Tackle(target); break;
+                case 1: user.PoisonSting(target); break;
+            }
+        }
 
         executingCommand = false;
+        return null;
     }
 
     //Misc methods
