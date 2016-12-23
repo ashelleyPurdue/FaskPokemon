@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BattleUIManager : MonoBehaviour
 {
+    public float commandTextDelay = 1f;     //How long to pause after showing a command's text
     public float useMoveDelay = 1f;         //How long to pause after using a move
 
     public DiffableHealthBar playerHealthBar;
     public DiffableHealthBar enemyHealthBar;
+
+    public ScrollingTextbox playerTextbox;
+    public ScrollingTextbox enemyTextbox;
 
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
@@ -97,8 +101,18 @@ public class BattleUIManager : MonoBehaviour
     
     private IEnumerator ExecuteCommand(DummyBattleCommand command)
     {
-        //TODO: Actually execute the command
+        //Actually execute the command
         executingCommand = true;
+
+        //Display the command text
+        ScrollingTextbox textbox = playerTextbox;
+        if (command.userPokemon == enemyPokemon)
+        {
+            textbox = enemyTextbox;
+        }
+        textbox.text = command.text;
+        yield return new WaitForSecondsOrSkip(commandTextDelay);
+
 
         if (command.commandType == DummyBattleCommandType.useMove)
         {
@@ -118,7 +132,7 @@ public class BattleUIManager : MonoBehaviour
         }
 
         executingCommand = false;
-        return null;
+        yield return null;
     }
 
     //Misc methods

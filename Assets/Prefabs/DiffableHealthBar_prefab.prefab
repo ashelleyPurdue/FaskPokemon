@@ -325,7 +325,7 @@ MonoBehaviour:
   currentValue: 1
   topSliderSpeed: 5
   diffSliderSpeed: 1
-  diffSliderDelay: 1
+  diffSliderDelay: 0.5
 --- !u!114 &114921361671961604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -516,7 +516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 43.2}
+  m_AnchoredPosition: {x: 199.5, y: -49.999985}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224829699669107860

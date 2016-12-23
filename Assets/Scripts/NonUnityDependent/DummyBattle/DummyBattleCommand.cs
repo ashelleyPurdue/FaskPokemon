@@ -5,6 +5,8 @@
     public DummyPokemon userPokemon;
     public DummyPokemon targetPokemon;
 
+    public string text = "";
+
     //UseMove information
     public int moveToUse = -1;
 
@@ -24,6 +26,7 @@
         command.moveToUse = moveToUse;
         command.userPokemon = user;
         command.targetPokemon = target;
+        command.text = "used " + moveToUse + "!";
 
         return command;
     }
