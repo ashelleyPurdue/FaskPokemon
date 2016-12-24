@@ -83,6 +83,10 @@ public class BattleUIManager : MonoBehaviour
     
     private IEnumerator ExecuteCommands()
     {
+        //Clear the textboxes
+        playerTextbox.text = "";
+        enemyTextbox.text = "";
+
         //Execute every command
         while (commandQueue.Count > 0)
         {
