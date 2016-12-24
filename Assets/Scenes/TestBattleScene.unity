@@ -549,6 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349719427}
   - component: {fileID: 349719426}
+  - component: {fileID: 349719428}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -604,6 +605,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &349719428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 349719425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876d8fa28e095d340badb15e83eebf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFlashLength: 1
 --- !u!1 &354285190
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,12 +717,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7386e59dc49cbc419b92858edf2883e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandTextDelay: 0.5
   useMoveDelay: 1
   playerHealthBar: {fileID: 1016603439}
   enemyHealthBar: {fileID: 797430315}
   playerTextbox: {fileID: 516698410}
   enemyTextbox: {fileID: 859744665}
+  playerFlasher: {fileID: 349719428}
+  enemyFlasher: {fileID: 1573788453}
   initialPanel: {fileID: 45895359}
 --- !u!4 &429588256
 Transform:
@@ -1902,6 +1916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573788452}
   - component: {fileID: 1573788451}
+  - component: {fileID: 1573788453}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -1957,6 +1972,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1573788453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1573788450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876d8fa28e095d340badb15e83eebf49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFlashLength: 1
 --- !u!1 &1715747363
 GameObject:
   m_ObjectHideFlags: 0

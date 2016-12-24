@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BattleUIManager : MonoBehaviour
 {
-    public float commandTextDelay = 1f;     //How long to pause after showing a command's text
     public float useMoveDelay = 1f;         //How long to pause after using a move
 
     public DiffableHealthBar playerHealthBar;
@@ -12,6 +11,9 @@ public class BattleUIManager : MonoBehaviour
 
     public ScrollingTextbox playerTextbox;
     public ScrollingTextbox enemyTextbox;
+
+    public FlashEffect playerFlasher;
+    public FlashEffect enemyFlasher;
 
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
@@ -115,16 +117,22 @@ public class BattleUIManager : MonoBehaviour
             textbox = enemyTextbox;
         }
         textbox.text = command.text;
-        yield return new WaitForSecondsOrSkip(commandTextDelay);
 
+        //Start the command's animation
+        command.StartAnimation();
+        yield return new WaitForSecondsOrSkip(command.GetAnimationTime());
 
+        //Start flashing
+        FlashEffect flasher = enemyFlasher;
+        if (command.userPokemon == enemyPokemon)
+        {
+            flasher = playerFlasher;
+        }
+        flasher.StartFlashing();
+
+        //Execute the move
         if (command.commandType == DummyBattleCommandType.useMove)
         {
-            //TODO: Start move animation
-
-            //TODO: Wait for a minimum amount of time, specified by the animation
-
-            //Execute the move
             DummyPokemon user = command.userPokemon;
             DummyPokemon target = command.targetPokemon;
 
