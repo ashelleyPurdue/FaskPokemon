@@ -6,6 +6,10 @@ using UnityEngine;
 public class WaitForSecondsOrSkip : CustomYieldInstruction
 {
     private static List<WaitForSecondsOrSkip> skipList = new List<WaitForSecondsOrSkip>();
+
+    private static bool batchSkippingEnabled = false;
+    private static bool batchSkip = false;
+
     private float countdown;
     
     public override bool keepWaiting
@@ -14,6 +18,12 @@ public class WaitForSecondsOrSkip : CustomYieldInstruction
         {
             //Count down
             countdown -= Time.deltaTime;
+
+            //Stop waiting if we're in a batch skip
+            if (batchSkippingEnabled && batchSkip)
+            {
+                return false;
+            }
 
             //Stop waiting if time is up
             if (countdown <= 0)
@@ -38,6 +48,29 @@ public class WaitForSecondsOrSkip : CustomYieldInstruction
 
         //Clear the list
         skipList.Clear();
+
+        //If batch skipping is enabled, start a batch skip
+        if (batchSkippingEnabled)
+        {
+            batchSkip = true;
+        }
+    }
+    
+    public static void BeginBatchSkip()
+    {
+        //Enables batch-skipping.
+        //If a skip command is issued while batch-skipping is enabled, then ALL waits will be skipped until batch skipping is disabled again.
+
+        batchSkippingEnabled = true;
+        batchSkip = false;
+    }
+
+    public static void EndBatchSkip()
+    {
+        //Disables batch-skipping
+
+        batchSkippingEnabled = false;
+        batchSkip = false;
     }
 
     public WaitForSecondsOrSkip(float time)
