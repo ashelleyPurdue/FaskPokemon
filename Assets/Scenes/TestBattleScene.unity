@@ -616,7 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876d8fa28e095d340badb15e83eebf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultFlashLength: 1
+  defaultFlashLength: 0.6
+  flashInterval: 0.075
 --- !u!1 &354285190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +1984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876d8fa28e095d340badb15e83eebf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultFlashLength: 1
+  defaultFlashLength: 0.6
+  flashInterval: 0.075
 --- !u!1 &1715747363
 GameObject:
   m_ObjectHideFlags: 0

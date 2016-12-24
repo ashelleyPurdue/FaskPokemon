@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class FlashEffect : MonoBehaviour
 {
     public float defaultFlashLength = 1f;       //How long to flash for, by default
+    public float flashInterval = 0.1f;         //The time between flashes
 
     private List<Renderer> renderers = new List<Renderer>();
     private List<Graphic> uiGraphics = new List<Graphic>();
 
     private float countdown = 0;
+    private float flashTimer = 0;
     private bool visible = true;
 
 
@@ -37,7 +39,14 @@ public class FlashEffect : MonoBehaviour
         if (countdown > 0)
         {
             countdown -= Time.deltaTime;
-            SetVisible(!visible);
+            flashTimer -= Time.deltaTime;
+
+            //If the flash interval is up, flash and reset it
+            if (flashTimer <= 0)
+            {
+                flashTimer = flashInterval;
+                SetVisible(!visible);
+            }
         }
 
         //If we're not flashing, make it visible
@@ -60,6 +69,7 @@ public class FlashEffect : MonoBehaviour
     {
         //Starts flashing for the given amount of time
         countdown = time;
+        flashTimer = flashInterval;
     }
 
 
