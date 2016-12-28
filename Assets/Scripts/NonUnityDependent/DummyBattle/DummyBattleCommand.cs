@@ -44,7 +44,7 @@
         //Gets the length of the animation
         //TODO: Change the length based on the move used
 
-        return 0.5f;
+        return 0.4f;
     }
 }
 
