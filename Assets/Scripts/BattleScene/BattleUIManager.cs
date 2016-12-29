@@ -50,8 +50,8 @@ public class BattleUIManager : MonoBehaviour
         }
 
         //Update the health bars
-        playerHealthBar.currentValue = (float)playerPokemon.currentHP / playerPokemon.currentHP;
-        enemyHealthBar.currentValue = (float)enemyPokemon.currentHP / enemyPokemon.currentHP;
+        playerHealthBar.currentValue = (float)playerPokemon.currentHP / playerPokemon.maxHP;
+        enemyHealthBar.currentValue = (float)enemyPokemon.currentHP / enemyPokemon.maxHP;
     }
 
 
