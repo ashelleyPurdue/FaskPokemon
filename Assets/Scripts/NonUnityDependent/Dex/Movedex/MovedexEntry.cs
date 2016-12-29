@@ -8,16 +8,18 @@ public abstract class MovedexEntry
 
     public MoveCategory moveCategory;
 
+    public int basePP;
 
     //Constructors
 
-    public MovedexEntry(DexID id, string moveName, string moveDescription, MoveCategory moveCategory)
+    public MovedexEntry(DexID id, string moveName, string moveDescription, MoveCategory moveCategory, int basePP)
     {
         this.id = id;
         this.moveName = moveName;
         this.moveDescription = moveDescription;
 
         this.moveCategory = moveCategory;
+        this.basePP = basePP;
     }
     
 
