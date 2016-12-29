@@ -5,8 +5,8 @@ public class StandardAttackMove : MovedexEntry
     public int power;
     public int accuracy;
 
-    public StandardAttackMove(DexID id, string moveName, string moveDescription, MoveCategory moveCategory, int basePP, int power, int accuracy)
-        : base(id, moveName, moveDescription, moveCategory, basePP)
+    public StandardAttackMove(DexID id, string moveName, string moveDescription, PokemonType type, MoveCategory moveCategory, int basePP, int power, int accuracy)
+        : base(id, moveName, moveDescription, type, moveCategory, basePP)
     {
         this.power = power;
         this.accuracy = accuracy;
