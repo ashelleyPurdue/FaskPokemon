@@ -5,7 +5,7 @@ public class PokedexEntry
     public DexID id;
 
     public string speciesName;
-    public string speciesDescription;
+    public string speciesDescription = "no description given";
 
     public PokemonType typeA;
     public PokemonType typeB;

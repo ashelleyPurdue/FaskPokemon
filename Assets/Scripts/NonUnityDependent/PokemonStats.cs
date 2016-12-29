@@ -11,6 +11,16 @@ public class PokemonStats
     public int speed { get; set; }
     public int maxHP { get; set; }
 
+    public PokemonStats(int attack, int defense, int spAttack, int spDefense, int speed, int maxHP)
+    {
+        this.attack = attack;
+        this.defense = defense;
+        this.spAttack = spAttack;
+        this.spDefense = spDefense;
+        this.speed = speed;
+        this.maxHP = maxHP;
+    }
+
     public PokemonStats()
     {
         //Initialize everything to zero
