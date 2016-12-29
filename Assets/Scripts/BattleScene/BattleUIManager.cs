@@ -18,10 +18,10 @@ public class BattleUIManager : MonoBehaviour
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
 
-    private DummyPokemon playerPokemon = new DummyPokemon();
-    private DummyPokemon enemyPokemon = new DummyPokemon();
+    private IndividualPokemon playerPokemon;
+    private IndividualPokemon enemyPokemon;
 
-    private Queue<DummyBattleCommand> commandQueue = new Queue<DummyBattleCommand>();
+    private Queue<BattleCommand> commandQueue = new Queue<BattleCommand>();
 
     private bool executingCommand = false;      //Whether or not we're currently executing a command.
 
@@ -30,6 +30,9 @@ public class BattleUIManager : MonoBehaviour
 
     void Awake()
     {
+        //Give both trainers a missingno
+        playerPokemon = GenerateTestMissingno(5);
+        enemyPokemon = GenerateTestMissingno(5);
     }
 
     void Start()        //Using start instead of awake so initialPanel can rut its Awake first.
@@ -47,8 +50,8 @@ public class BattleUIManager : MonoBehaviour
         }
 
         //Update the health bars
-        playerHealthBar.currentValue = (float)playerPokemon.currentHealth / playerPokemon.maxHealth;
-        enemyHealthBar.currentValue = (float)enemyPokemon.currentHealth / enemyPokemon.maxHealth;
+        playerHealthBar.currentValue = (float)playerPokemon.currentHP / playerPokemon.currentHP;
+        enemyHealthBar.currentValue = (float)enemyPokemon.currentHP / enemyPokemon.currentHP;
     }
 
 
@@ -57,7 +60,7 @@ public class BattleUIManager : MonoBehaviour
     public void UseMove(int moveIndex)
     {
         //Create a battle command to use this move
-        DummyBattleCommand playerCommand = DummyBattleCommand.CreateUseCommand(playerPokemon, enemyPokemon, moveIndex);
+        BattleCommand playerCommand = BattleCommand.CreateUseCommand(playerPokemon, enemyPokemon, moveIndex);
 
         //Do the turn
         DoTurn(playerCommand);
@@ -92,7 +95,7 @@ public class BattleUIManager : MonoBehaviour
         //Execute every command
         while (commandQueue.Count > 0)
         {
-            DummyBattleCommand command = commandQueue.Dequeue();
+            BattleCommand command = commandQueue.Dequeue();
 
             //Execute the command we just popped
             do { yield return ExecuteCommand(command); } while (executingCommand);
@@ -105,7 +108,7 @@ public class BattleUIManager : MonoBehaviour
         ChangePanels(initialPanel);
     }
     
-    private IEnumerator ExecuteCommand(DummyBattleCommand command)
+    private IEnumerator ExecuteCommand(BattleCommand command)
     {
         //Actually execute the command
         executingCommand = true;
@@ -131,16 +134,12 @@ public class BattleUIManager : MonoBehaviour
         flasher.StartFlashing();
 
         //Execute the move
-        if (command.commandType == DummyBattleCommandType.useMove)
+        if (command.commandType == BattleCommandType.useMove)
         {
-            DummyPokemon user = command.userPokemon;
-            DummyPokemon target = command.targetPokemon;
+            IndividualPokemon user = command.userPokemon;
+            IndividualPokemon target = command.targetPokemon;
 
-            switch (command.moveToUse)
-            {
-                case 0: user.Tackle(target); break;
-                case 1: user.PoisonSting(target); break;
-            }
+            user.GetMove(command.moveToUse).Use(user, target);
         }
 
         executingCommand = false;
@@ -149,19 +148,19 @@ public class BattleUIManager : MonoBehaviour
 
     //Misc methods
 
-    private DummyBattleCommand DecideEnemyCommand()
+    private BattleCommand DecideEnemyCommand()
     {
         //TODO: Choose a random command for the enemy to use
 
-        return DummyBattleCommand.CreateUseCommand(enemyPokemon, playerPokemon, 0);
+        return BattleCommand.CreateUseCommand(enemyPokemon, playerPokemon, 0);
     }
 
-    private void DoTurn(DummyBattleCommand playerCommand)
+    private void DoTurn(BattleCommand playerCommand)
     {
         //Starts executing the commands.
 
         //Decide the enemy command
-        DummyBattleCommand enemyCommand = DecideEnemyCommand();
+        BattleCommand enemyCommand = DecideEnemyCommand();
 
         //Put the commands in the queue
         //TODO: Decide which one should go first
@@ -173,5 +172,26 @@ public class BattleUIManager : MonoBehaviour
 
         //Start the coroutine
         StartCoroutine(ExecuteCommands());
+    }
+
+    private IndividualPokemon GenerateTestMissingno(int level)
+    {
+        //Generates a missingno to be used for testing purposes
+
+        //Set each IV to 15
+        PokemonStats ivs = new PokemonStats();
+        for (int i = 0; i < PokemonStats.NUM_STATS; i++)
+        {
+            ivs[(PokemonStatID)i] = 15;
+        }
+
+        //Give it tackle
+        List<IndividualPokemonMove> moves = new List<IndividualPokemonMove>();
+        moves.Add(new IndividualPokemonMove(new DexID("", 1)));
+
+        //Create the pokemon
+        IndividualPokemon pokemon = new IndividualPokemon(new DexID("", 0), ivs, moves, level);
+
+        return pokemon;
     }
 }

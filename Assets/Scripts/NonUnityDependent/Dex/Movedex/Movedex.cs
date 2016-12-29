@@ -2,7 +2,7 @@
 
 public static class Movedex
 {
-    private static GenericDex<MovedexEntry> dex;
+    private static GenericDex<MovedexEntry> dex = new GenericDex<MovedexEntry>();
 
     static Movedex()
     {
