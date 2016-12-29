@@ -4,6 +4,25 @@ public static class Movedex
 {
     private static GenericDex<MovedexEntry> dex;
 
+    static Movedex()
+    {
+        //Add some basic moves
+
+        //Tackle
+        StandardAttackMove tackle = new StandardAttackMove
+            (
+                new DexID("", 1),
+                "Tackle",
+                "The goomba of Pokemon moves",
+                PokemonType.normal,
+                MoveCategory.physical,
+                35,
+                40,
+                100
+            );
+        AddEntry(tackle);
+    }
+
     public static void AddEntry(MovedexEntry entry)
     {
         //Throw an exception if there's a duplicate id
