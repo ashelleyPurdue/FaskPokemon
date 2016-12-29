@@ -26,7 +26,9 @@
         command.moveToUse = moveToUse;
         command.userPokemon = user;
         command.targetPokemon = target;
-        command.text = "used " + moveToUse + "!";
+
+        MovedexEntry moveEntry = user.GetMove(moveToUse).entry;
+        command.text = user.displayName + " used " + moveEntry.moveName + "!";
 
         return command;
     }
