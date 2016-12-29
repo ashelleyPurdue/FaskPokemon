@@ -15,6 +15,7 @@ public class StandardAttackMove : MovedexEntry
     public override void Use(IndividualPokemon user, IndividualPokemon target)
     {
         //TODO: Deal damage using the damage formula
-        throw new NotImplementedException();
+
+        target.ChangeHP(target.maxHP / 5 * -1);
     }
 }

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class IndividualPokemon
 {
+    //Events
+    public delegate void PokemonFaintedHandler(IndividualPokemon pokemon);
+    public static event PokemonFaintedHandler OnPokemonFainted;
+
+    //Fields
     public DexID species;
     public PokedexEntry pokedexEntry { get { return Pokedex.GetEntry(species); } }
 
@@ -34,6 +39,8 @@ public class IndividualPokemon
 
     //Battle info
     public int currentHP { get; private set; }
+    public int maxHP { get { return CalculateStat(PokemonStatID.maxHP); } }
+
     public StatusCondition currentCondition { get; private set; }
 
 
@@ -95,6 +102,27 @@ public class IndividualPokemon
 
 
     //Misc methods
+
+    public void ChangeHP(int delta)
+    {
+        //Heals/takes damage by the given amount
+
+        currentHP += delta;
+
+        //Cap at max hp
+        int maxHP = CalculateStat(PokemonStatID.maxHP);
+        if (currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+
+        //Faint if zero
+        if (currentHP <= 0)
+        {
+            currentHP = 0;
+            OnPokemonFainted(this);
+        }
+    }
 
     public int CalculateStat(PokemonStatID stat)
     {
