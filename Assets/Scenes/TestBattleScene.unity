@@ -725,11 +725,6 @@ MonoBehaviour:
   enemyTextbox: {fileID: 859744665}
   playerFlasher: {fileID: 349719428}
   enemyFlasher: {fileID: 1573788453}
-  moveButtons:
-  - {fileID: 1511932274}
-  - {fileID: 1994691198}
-  - {fileID: 2022632087}
-  - {fileID: 867014810}
   initialPanel: {fileID: 45895359}
 --- !u!4 &429588256
 Transform:
@@ -856,6 +851,7 @@ GameObject:
   - component: {fileID: 701671050}
   - component: {fileID: 701671049}
   - component: {fileID: 701671048}
+  - component: {fileID: 701671051}
   m_Layer: 5
   m_Name: Move2Button
   m_TagString: Untagged
@@ -967,6 +963,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701671046}
+--- !u!114 &701671051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 701671046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd91f020f45c38a4ba2fded08aec6f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUIManager: {fileID: 429588255}
+  text: {fileID: 2022632087}
+  moveNum: 2
 --- !u!1001 &746953953
 Prefab:
   m_ObjectHideFlags: 0
@@ -1261,6 +1271,7 @@ GameObject:
   - component: {fileID: 1045670913}
   - component: {fileID: 1045670912}
   - component: {fileID: 1045670911}
+  - component: {fileID: 1045670914}
   m_Layer: 5
   m_Name: Move3Button
   m_TagString: Untagged
@@ -1372,6 +1383,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1045670909}
+--- !u!114 &1045670914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1045670909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd91f020f45c38a4ba2fded08aec6f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUIManager: {fileID: 429588255}
+  text: {fileID: 867014810}
+  moveNum: 3
 --- !u!1001 &1079598508
 Prefab:
   m_ObjectHideFlags: 0
@@ -1728,6 +1753,7 @@ GameObject:
   - component: {fileID: 1439421218}
   - component: {fileID: 1439421217}
   - component: {fileID: 1439421216}
+  - component: {fileID: 1439421219}
   m_Layer: 5
   m_Name: Move1Button
   m_TagString: Untagged
@@ -1839,6 +1865,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1439421214}
+--- !u!114 &1439421219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439421214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd91f020f45c38a4ba2fded08aec6f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUIManager: {fileID: 429588255}
+  text: {fileID: 1994691198}
+  moveNum: 1
 --- !u!1 &1511932272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2042,7 @@ GameObject:
   - component: {fileID: 1715747367}
   - component: {fileID: 1715747366}
   - component: {fileID: 1715747365}
+  - component: {fileID: 1715747368}
   m_Layer: 5
   m_Name: Move0Button
   m_TagString: Untagged
@@ -2113,6 +2154,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1715747363}
+--- !u!114 &1715747368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715747363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd91f020f45c38a4ba2fded08aec6f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleUIManager: {fileID: 429588255}
+  text: {fileID: 1511932274}
+  moveNum: 0
 --- !u!1 &1752097288
 GameObject:
   m_ObjectHideFlags: 0
