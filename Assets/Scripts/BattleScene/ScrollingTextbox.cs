@@ -49,9 +49,9 @@ public class ScrollingTextbox : MonoBehaviour
             //Count down to add a new one
             countdown -= Time.deltaTime;
 
-            if (countdown <= 0)
+            while (countdown <= 0 && textPos < text.Length)
             {
-                countdown = characterTime;
+                countdown += characterTime;
                 textObj.text += text[textPos];
 
                 textPos++;
