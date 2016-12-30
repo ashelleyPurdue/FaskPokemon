@@ -28,18 +28,25 @@ public class IndividualPokemon
     }
 
     //Training info
+    public PokemonStats speciesBaseStats { get { return pokedexEntry.baseStats; } }
     public PokemonStats individualValues;
     public PokemonStats effortValues;
+
+    public int attack { get { return CalculateStat(PokemonStatID.attack); } }
+    public int defense { get { return CalculateStat(PokemonStatID.defense); } }
+    public int spAttack { get { return CalculateStat(PokemonStatID.spAttack); } }
+    public int spDefense { get { return CalculateStat(PokemonStatID.spDefense); } }
+    public int speed { get { return CalculateStat(PokemonStatID.speed); } }
+    public int maxHP { get { return CalculateStat(PokemonStatID.maxHP); } }
 
     public int level { get; private set; }
     public int exp { get; private set; }
 
     public const int MAX_KNOWN_MOVES = 4;
-    private List<IndividualPokemonMove> knownMoves;     //TODO: Add getters/setters 
+    private List<IndividualPokemonMove> knownMoves;
 
     //Battle info
     public int currentHP { get; private set; }
-    public int maxHP { get { return CalculateStat(PokemonStatID.maxHP); } }
 
     public StatusCondition currentCondition { get; private set; }
 
@@ -126,11 +133,46 @@ public class IndividualPokemon
 
     public int CalculateStat(PokemonStatID stat)
     {
-        //TODO: Actually use the proper formula
+        //Calculates the pokemon's current stat
 
-        return (pokedexEntry.baseStats[stat] + individualValues[stat] + effortValues[stat] / 4) * level;
+        //If it's maxHP, use the HP formula
+        if (stat == PokemonStatID.maxHP)
+        {
+            return CalculateMaxHP(speciesBaseStats.maxHP, individualValues.maxHP, effortValues.maxHP, level);
+        }
+
+        //Use the normal formula
+        //TODO: Determine nature multiplier
+        float natureMult = 1f;
+        return CalculateNonHPStat(speciesBaseStats[stat], individualValues[stat], effortValues[stat], natureMult, level);
     }
 
+    public static int CalculateNonHPStat(int baseStat, int iv, int ev, float natureMult, int level)
+    {
+        //Uses the stat formula to calculate a non-hp stat
+        //Taken from Bulbapedia
+
+        int beforeNature = 2 * baseStat + iv + (ev / 4);
+        beforeNature *= level;
+        beforeNature /= 100;
+        beforeNature += 5;
+
+        float afterNature = (float)beforeNature * natureMult;
+        return (int)afterNature;
+    }
+
+    public static int CalculateMaxHP(int baseStat, int iv, int ev, int level)
+    {
+        //Calculates max HP
+        //Taken from Bulbapedia
+
+        int result = 2 * baseStat + iv + (ev / 4);
+        result *= level;
+        result /= 100;
+        result += level + 10;
+
+        return result;
+    }
 
     //Exceptions
     public class TooManyMovesException : System.Exception { }
