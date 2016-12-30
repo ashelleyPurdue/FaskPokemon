@@ -15,6 +15,8 @@ public class BattleUIManager : MonoBehaviour
     public FlashEffect playerFlasher;
     public FlashEffect enemyFlasher;
 
+    public UnityEngine.UI.Text[] moveButtons;
+
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
 
@@ -31,8 +33,8 @@ public class BattleUIManager : MonoBehaviour
     void Awake()
     {
         //Give both trainers a missingno
-        playerPokemon = GenerateTestMissingno(5);
-        enemyPokemon = GenerateTestMissingno(5);
+        PlayerSwitchIn(GenerateTestMissingno(5));
+        EnemySwitchIn(GenerateTestMissingno(5));
     }
 
     void Start()        //Using start instead of awake so initialPanel can rut its Awake first.
@@ -105,6 +107,7 @@ public class BattleUIManager : MonoBehaviour
         }
 
         //Commands are done.  Show menus again
+        UpdateMoveButtons();
         ChangePanels(initialPanel);
     }
     
@@ -146,7 +149,57 @@ public class BattleUIManager : MonoBehaviour
         yield return null;
     }
 
+
     //Misc methods
+
+    private void PlayerSwitchIn(IndividualPokemon pokemon)
+    {
+        //Switches the given pokemon in for the player
+        playerPokemon = pokemon;
+
+        UpdateMoveButtons();
+        //TODO: Change sprite, play animation
+    }
+
+    private void EnemySwitchIn(IndividualPokemon pokemon)
+    {
+        //Switches the given pokemon in for the enemy
+        enemyPokemon = pokemon;
+
+        //TODO: Change sprite, play animation
+        
+    }
+
+    private void UpdateMoveButtons()
+    {
+        //Updates the move buttons based on what the player's current Pokemon can do.
+
+        for (int i = 0; i < moveButtons.Length; i++)
+        {
+            UnityEngine.UI.Text buttonText = moveButtons[i];
+
+            //Get the move from the player pokemon
+            IndividualPokemonMove move = playerPokemon.GetMove(i);
+
+            //If it's null, disable the button
+            if (move == null)
+            {
+                buttonText.text = "--";
+                //TODO: Disable the button
+                continue;
+            }
+
+            //Set the text
+            buttonText.text = move.entry.moveName;
+
+            //TODO: Make button unclickable if not enough PP
+            if (move.currentPP <= 0)
+            {
+                buttonText.text += "(No PP)";
+                //TODO: Disable the button
+            }
+        }
+    }
 
     private BattleCommand DecideEnemyCommand()
     {

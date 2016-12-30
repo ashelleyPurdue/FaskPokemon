@@ -725,6 +725,11 @@ MonoBehaviour:
   enemyTextbox: {fileID: 859744665}
   playerFlasher: {fileID: 349719428}
   enemyFlasher: {fileID: 1573788453}
+  moveButtons:
+  - {fileID: 1511932274}
+  - {fileID: 1994691198}
+  - {fileID: 2022632087}
+  - {fileID: 867014810}
   initialPanel: {fileID: 45895359}
 --- !u!4 &429588256
 Transform:
