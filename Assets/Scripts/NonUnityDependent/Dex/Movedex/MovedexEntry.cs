@@ -6,6 +6,8 @@ public abstract class MovedexEntry
     public string moveName;
     public string moveDescription;
 
+    public int genericAnimationID;
+
     public PokemonType type;
     public MoveCategory moveCategory;
 
@@ -13,7 +15,7 @@ public abstract class MovedexEntry
 
     //Constructors
 
-    public MovedexEntry(DexID id, string moveName, string moveDescription, PokemonType type, MoveCategory moveCategory, int basePP)
+    public MovedexEntry(DexID id, string moveName, string moveDescription, int genericAnimationID, PokemonType type, MoveCategory moveCategory, int basePP)
     {
         this.id = id;
         this.moveName = moveName;

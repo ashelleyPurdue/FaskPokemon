@@ -14,6 +14,7 @@ public static class Movedex
                 new DexID("", 1),
                 "Tackle",
                 "The goomba of Pokemon moves",
+                1,
                 PokemonType.normal,
                 MoveCategory.physical,
                 35,
