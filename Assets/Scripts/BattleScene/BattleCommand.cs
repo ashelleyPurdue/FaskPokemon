@@ -33,21 +33,6 @@
         return command;
     }
 
-
-    //Interface
-
-    public void StartAnimation()
-    {
-        //TODO: Start the move's animation
-    }
-
-    public float GetAnimationTime()
-    {
-        //Gets the length of the animation
-        //TODO: Change the length based on the move used
-
-        return 0.4f;
-    }
 }
 
 public enum BattleCommandType

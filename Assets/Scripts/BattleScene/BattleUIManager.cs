@@ -9,11 +9,11 @@ public class BattleUIManager : MonoBehaviour
     public DiffableHealthBar playerHealthBar;
     public DiffableHealthBar enemyHealthBar;
 
+    public BattlePokemonDisplay playerDisplay;
+    public BattlePokemonDisplay enemyDisplay;
+
     public ScrollingTextbox playerTextbox;
     public ScrollingTextbox enemyTextbox;
-
-    public FlashEffect playerFlasher;
-    public FlashEffect enemyFlasher;
 
     public BattlePanel initialPanel;
     private BattlePanel currentPanel;
@@ -113,25 +113,22 @@ public class BattleUIManager : MonoBehaviour
         //Actually execute the command
         executingCommand = true;
 
+        //Determine which set of display objects to use
+        BattlePokemonDisplay userDisplay = playerDisplay;
+        ScrollingTextbox userTextbox = playerTextbox;
+
+        BattlePokemonDisplay targetDisplay = enemyDisplay;
+
+        if (command.userPokemon == enemyPokemon)
+        {
+            userTextbox = enemyTextbox;
+            userDisplay = enemyDisplay;
+
+            targetDisplay = playerDisplay;
+        }
+
         //Display the command text
-        ScrollingTextbox textbox = playerTextbox;
-        if (command.userPokemon == enemyPokemon)
-        {
-            textbox = enemyTextbox;
-        }
-        textbox.text = command.text;
-
-        //Start the command's animation
-        command.StartAnimation();
-        yield return new WaitForSecondsOrSkip(command.GetAnimationTime());
-
-        //Start flashing
-        FlashEffect flasher = enemyFlasher;
-        if (command.userPokemon == enemyPokemon)
-        {
-            flasher = playerFlasher;
-        }
-        flasher.StartFlashing();
+        userTextbox.text = command.text;
 
         //Execute the move
         if (command.commandType == BattleCommandType.useMove)
@@ -139,7 +136,17 @@ public class BattleUIManager : MonoBehaviour
             IndividualPokemon user = command.userPokemon;
             IndividualPokemon target = command.targetPokemon;
 
+            IndividualPokemonMove move = user.GetMove(command.moveToUse);
+
+            //Start the command's animation
+            float waitTime = targetDisplay.GenericMoveAnimation(move.entry.genericAnimationID);
+            yield return new WaitForSecondsOrSkip(waitTime);
+
+            //Use the move
             user.GetMove(command.moveToUse).Use(user, target);
+
+            //Start flashing
+            targetDisplay.TakeDamage();
         }
 
         executingCommand = false;

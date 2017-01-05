@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 349719427}
   - component: {fileID: 349719426}
   - component: {fileID: 349719428}
+  - component: {fileID: 349719429}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -618,6 +619,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFlashLength: 0.6
   flashInterval: 0.075
+--- !u!114 &349719429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 349719425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf4f7561816c14fa0eb9bc90a97e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &354285190
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +733,8 @@ MonoBehaviour:
   useMoveDelay: 1
   playerHealthBar: {fileID: 1016603439}
   enemyHealthBar: {fileID: 797430315}
+  playerDisplay: {fileID: 349719429}
+  enemyDisplay: {fileID: 1573788454}
   playerTextbox: {fileID: 516698410}
   enemyTextbox: {fileID: 859744665}
   playerFlasher: {fileID: 349719428}
@@ -1963,6 +1977,7 @@ GameObject:
   - component: {fileID: 1573788452}
   - component: {fileID: 1573788451}
   - component: {fileID: 1573788453}
+  - component: {fileID: 1573788454}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -2031,6 +2046,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFlashLength: 0.6
   flashInterval: 0.075
+--- !u!114 &1573788454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1573788450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaf4f7561816c14fa0eb9bc90a97e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1715747363
 GameObject:
   m_ObjectHideFlags: 0

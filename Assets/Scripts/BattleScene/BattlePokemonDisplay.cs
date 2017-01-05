@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FlashEffect))]
 public class BattlePokemonDisplay : MonoBehaviour
 {
     public IndividualPokemon pokemon { get; private set; }
+
+    private FlashEffect flasher;
+
+    //Events
+
+    void Awake()
+    {
+        flasher = GetComponent<FlashEffect>();
+    }
 
     //Interface
 
@@ -20,7 +30,9 @@ public class BattlePokemonDisplay : MonoBehaviour
 
     public void TakeDamage()
     {
-        //TODO: Start the take damage animation
+        //Start the take damage animation
+
+        flasher.StartFlashing();
     }
 
     public float GenericMoveAnimation(int animID)
