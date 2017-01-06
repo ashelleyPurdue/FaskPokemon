@@ -71,6 +71,20 @@ namespace SimpleAnimationSystem
 
         //Interface
 
+        public void Apply(Transform target, bool localSpace)
+        {
+            //Applies the transform to the given target, either in local space or global space
+
+            if (localSpace)
+            {
+                ApplyLocal(target);
+            }
+            else
+            {
+                ApplyGlobal(target);
+            }
+        }
+
         public void ApplyGlobal(Transform target)
         {
             //Applies this transformation to the target's global position/rotation

@@ -7,8 +7,18 @@ namespace SimpleAnimationSystem
     public class SimpleAnimation
     {
         public int numKeyframes { get { return keyframes.Count; } }
+        public float animationLen { get; private set; }
 
         private List<KeyFrame> keyframes;
+
+
+        //Constructors
+
+        public SimpleAnimation(List<KeyFrame> keyframes)
+        {
+            this.keyframes = keyframes;
+            animationLen = CalculateAnimationLength();
+        }
 
 
         //Interface
@@ -59,6 +69,22 @@ namespace SimpleAnimationSystem
             after = null;
 
             return;
+        }
+
+
+        //Misc methods
+
+        private float CalculateAnimationLength()
+        {
+            //Returns the length of the animation in seconds
+
+            float len = 0;
+            for (int i = 0; i < numKeyframes; i++)
+            {
+                len += keyframes[i].timeOffset;
+            }
+
+            return len;
         }
     }
 
