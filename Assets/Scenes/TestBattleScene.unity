@@ -642,12 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b69e5a4e1c6844a0bcf078c33fdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mirrorXPosition: 0
-  mirrorYPosition: 0
-  mirrorZPosition: 0
-  mirrorXScale: 0
-  mirrorYScale: 0
-  mirrorZScale: 0
+  positionScale: {x: 0.2, y: 0.2, z: 0.2}
+  scaleScale: {x: 1, y: 1, z: 1}
 --- !u!1 &354285190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,12 +2081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b69e5a4e1c6844a0bcf078c33fdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mirrorXPosition: 0
-  mirrorYPosition: 0
-  mirrorZPosition: 0
-  mirrorXScale: 0
-  mirrorYScale: 0
-  mirrorZScale: 0
+  positionScale: {x: -0.2, y: -0.2, z: -0.2}
+  scaleScale: {x: 1, y: 1, z: 1}
 --- !u!1 &1715747363
 GameObject:
   m_ObjectHideFlags: 0

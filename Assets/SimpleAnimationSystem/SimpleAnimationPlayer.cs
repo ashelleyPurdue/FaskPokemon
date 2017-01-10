@@ -6,13 +6,8 @@ namespace SimpleAnimationSystem
 {
     public class SimpleAnimationPlayer : MonoBehaviour
     {
-        public bool mirrorXPosition = false;
-        public bool mirrorYPosition = false;
-        public bool mirrorZPosition = false;
-
-        public bool mirrorXScale = false;
-        public bool mirrorYScale = false;
-        public bool mirrorZScale = false;
+		public Vector3 positionScale = Vector3.one;     //How much to scale each keyframe's position by.
+		public Vector3 scaleScale = Vector3.one;		//How much to scale each keyframe's scale by.
 
         private SimpleAnimation currentAnimation;
 
@@ -80,10 +75,13 @@ namespace SimpleAnimationSystem
         {
             //Updates the position/rotation/scale based on the current time in the animaiton
 
-			//TODO: Implement the "mirror" toggles
-
 			//Tween the transformations and apply them.
             Transformation newTrans = Transformation.Lerp(prevFrame.transformation, nextFrame.transformation, frameTimer / nextFrame.timeOffset);
+
+			//Scale the new transformation
+			newTrans.position = ScaleVector(newTrans.position, positionScale);
+			newTrans.scale = ScaleVector(newTrans.scale, scaleScale);
+
             newTrans.ApplyLocal(transform);
         }
 
@@ -114,5 +112,17 @@ namespace SimpleAnimationSystem
             prevFrame = nextFrame;
             nextFrame = currentAnimation.GetKeyframe(nextFrameIndex);
         }
-    }
+
+		private Vector3 ScaleVector(Vector3 original, Vector3 multiplier)
+		{
+			//Multiplies the vectors' components.
+
+			Vector3 scaled = original;
+			original.x *= multiplier.x;
+			original.y *= multiplier.y;
+			original.z *= multiplier.z;
+
+			return original;
+		}
+	}
 }
