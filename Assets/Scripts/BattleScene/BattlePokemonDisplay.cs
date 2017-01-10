@@ -18,9 +18,6 @@ public class BattlePokemonDisplay : MonoBehaviour
     {
         flasher = GetComponent<FlashEffect>();
 		animPlayer = GetComponent<SimpleAnimationPlayer>();
-
-		//TEST: Play the simple tackle animation
-		animPlayer.PlayAnimation(TestAnimations.tackle);
     }
 
     //Interface
@@ -74,8 +71,8 @@ public static class TestAnimations
 		//Create the tackle animation
 		List<KeyFrame> frames = new List<KeyFrame>();
 		KeyFrame start = new KeyFrame(0, new Transformation(Vector3.zero, Vector3.one, Quaternion.identity));
-		KeyFrame end = new KeyFrame(0.5f, new Transformation(new Vector3(0.5f, 0.5f), Vector3.one, Quaternion.identity));
-		KeyFrame comeBack = new KeyFrame(1f, start.transformation);
+		KeyFrame end = new KeyFrame(0.1f, new Transformation(new Vector3(1, 1), Vector3.one, Quaternion.identity));
+		KeyFrame comeBack = new KeyFrame(0.3f, start.transformation);
 
 		frames.Add(start);
 		frames.Add(end);

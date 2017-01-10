@@ -138,8 +138,8 @@ public class BattleUIManager : MonoBehaviour
 
             IndividualPokemonMove move = user.GetMove(command.moveToUse);
 
-            //Start the command's animation
-            float waitTime = userDisplay.GenericMoveAnimation(move.entry.genericAnimationID);
+			//Start the command's animation
+			float waitTime = userDisplay.GenericMoveAnimation(move.entry.genericAnimationID);
             yield return new WaitForSecondsOrSkip(waitTime);
 
             //Use the move
