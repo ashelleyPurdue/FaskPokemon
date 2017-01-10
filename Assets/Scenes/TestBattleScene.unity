@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 349719426}
   - component: {fileID: 349719428}
   - component: {fileID: 349719429}
+  - component: {fileID: 349719430}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -599,12 +600,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 349719425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.26, y: -1.39, z: 100}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1810356764}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &349719428
 MonoBehaviour:
@@ -630,6 +631,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaf4f7561816c14fa0eb9bc90a97e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &349719430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 349719425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903b69e5a4e1c6844a0bcf078c33fdc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mirrorXPosition: 0
+  mirrorYPosition: 0
+  mirrorZPosition: 0
+  mirrorXScale: 0
+  mirrorYScale: 0
+  mirrorZScale: 0
 --- !u!1 &354285190
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,8 +755,6 @@ MonoBehaviour:
   enemyDisplay: {fileID: 1573788454}
   playerTextbox: {fileID: 516698410}
   enemyTextbox: {fileID: 859744665}
-  playerFlasher: {fileID: 349719428}
-  enemyFlasher: {fileID: 1573788453}
   initialPanel: {fileID: 45895359}
 --- !u!4 &429588256
 Transform:
@@ -1978,6 +1994,7 @@ GameObject:
   - component: {fileID: 1573788451}
   - component: {fileID: 1573788453}
   - component: {fileID: 1573788454}
+  - component: {fileID: 1573788455}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -2026,12 +2043,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573788450}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 2.34, z: 100}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1833920102}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1573788453
 MonoBehaviour:
@@ -2057,6 +2074,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaf4f7561816c14fa0eb9bc90a97e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1573788455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1573788450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903b69e5a4e1c6844a0bcf078c33fdc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mirrorXPosition: 0
+  mirrorYPosition: 0
+  mirrorZPosition: 0
+  mirrorXScale: 0
+  mirrorYScale: 0
+  mirrorZScale: 0
 --- !u!1 &1715747363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,11 +2302,69 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1752097288}
+--- !u!1 &1810356763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1810356764}
+  m_Layer: 0
+  m_Name: PlayerSpriteRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810356764
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1810356763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.26, y: -1.39, z: 100}
+  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_Children:
+  - {fileID: 349719427}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1811628994 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224631752582244508, guid: bf0cef96d11f4f540b8515c50194cf6a,
     type: 2}
   m_PrefabInternal: {fileID: 1947229228}
+--- !u!1 &1833920101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1833920102}
+  m_Layer: 0
+  m_Name: EnemySpriteRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1833920102
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1833920101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.24, y: 2.34, z: 100}
+  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_Children:
+  - {fileID: 1573788452}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1947229228
 Prefab:
   m_ObjectHideFlags: 0
