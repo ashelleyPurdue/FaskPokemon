@@ -80,6 +80,9 @@ namespace SimpleAnimationSystem
         {
             //Updates the position/rotation/scale based on the current time in the animaiton
 
+			//TODO: Implement the "mirror" toggles
+
+			//Tween the transformations and apply them.
             Transformation newTrans = Transformation.Lerp(prevFrame.transformation, nextFrame.transformation, frameTimer / nextFrame.timeOffset);
             newTrans.ApplyLocal(transform);
         }
