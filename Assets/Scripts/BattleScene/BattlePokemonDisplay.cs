@@ -44,10 +44,16 @@ public class BattlePokemonDisplay : MonoBehaviour
 
     public float GenericMoveAnimation(int animID)
     {
-        //TODO: Start one of the generic animations
-        //Returns the length of the animation in seconds
+		//TODO: Start one of the generic animations
+		//Returns the length of the animation in seconds
 
-        return 0.25f;
+		//TODO: Decide which animation to start based on animID
+		SimpleAnimation anim = TestAnimations.tackle;
+
+		//Start the animation
+		animPlayer.PlayAnimation(anim);
+
+		return anim.animationLen;
     }
 
     public void Faint()
