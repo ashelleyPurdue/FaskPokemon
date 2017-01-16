@@ -137,10 +137,56 @@ namespace SimpleAnimationSystem
             return;
         }
 
+		public override string ToString()
+		{
+			//Converts this animation to a string
 
-        //Misc methods
+			StringBuilder builder = new StringBuilder();
 
-        private float CalculateAnimationLength()
+			//Append the first frame
+			Transformation trans = keyframes[0].transformation;
+			builder.AppendLine("\t" + POS_COMMAND + " = " + Vector3ToString(trans.position) + ";");
+			builder.AppendLine("\t" + SCALE_COMMAND + " = " + Vector3ToString(trans.scale) + ";");
+			builder.AppendLine("\t" + EULER_ROT_COMMAND + " = " + Vector3ToString(trans.rotation.eulerAngles) + ";");
+			builder.AppendLine("");
+
+			//Append all remaining frames
+			for (int i = 1; i < numKeyframes; i++)
+			{
+				KeyFrame currentFrame = keyframes[i];
+				KeyFrame prevFrame = keyframes[i - 1];
+
+				//Append the time offset, unless it's the first frame
+				builder.AppendLine(OFFSET_COMMAND + " = " + currentFrame.timeOffset + ";");
+
+				//Append the pos, scale, rot unless it's the same as the previous frame
+				trans = currentFrame.transformation;
+				Transformation prevTrans = prevFrame.transformation;
+
+				if (prevTrans.position != trans.position)
+				{
+					builder.AppendLine("\t" + POS_COMMAND + " = " + Vector3ToString(trans.position) + ";");
+				}
+				if (prevTrans.scale != trans.scale)
+				{
+					builder.AppendLine("\t" + SCALE_COMMAND + " = " + Vector3ToString(trans.scale) + ";");
+				}
+				if (prevTrans.rotation != trans.rotation)
+				{
+					builder.AppendLine("\t" + EULER_ROT_COMMAND + " = " + Vector3ToString(trans.rotation.eulerAngles) + ";");
+				}
+
+				//Append an extra line
+				builder.AppendLine("");
+			}
+
+			return builder.ToString();
+		}
+
+
+		//Misc methods
+
+		private float CalculateAnimationLength()
         {
             //Returns the length of the animation in seconds
 
@@ -152,6 +198,13 @@ namespace SimpleAnimationSystem
 
             return len;
         }
+
+		private string Vector3ToString(Vector3 vec)
+		{
+			//Converts a given vector3 into a string
+
+			return "(" + vec.x + ", " + vec.y + ", " + vec.z + ")";
+		}
 
 		private Vector3 Vector3FromString(string str)
 		{
@@ -190,27 +243,5 @@ namespace SimpleAnimationSystem
             this.transformation = transformation;
         }
 
-		public override string ToString()
-		{
-			//Returns the string representation of this keyframe
-
-			StringBuilder builder = new StringBuilder();
-
-			builder.AppendLine("\t" + SimpleAnimation.OFFSET_COMMAND + " = " + timeOffset + ";");
-			builder.Append("\t" + SimpleAnimation.POS_COMMAND + " = " + Vector3String(transformation.position) + ";");
-			builder.Append("\t" + SimpleAnimation.SCALE_COMMAND + " = " + Vector3String(transformation.scale) + ";");
-			builder.Append("\t" + SimpleAnimation.EULER_ROT_COMMAND + " = " + Vector3String(transformation.rotation.eulerAngles) + ";");
-
-			return builder.ToString();
-		}
-
-		//Misc methods
-
-		private string Vector3String(Vector3 vec)
-		{
-			//Converts a given vector3 into a string
-
-			return "(" + vec.x + ", " + vec.y + ", " + vec.z + ")";
-		}
     }
 }

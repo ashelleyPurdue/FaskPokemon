@@ -79,5 +79,6 @@ public static class TestAnimations
 		frames.Add(comeBack);
 
 		tackle = new SimpleAnimation(frames);
+		Debug.Log(tackle.ToString());
 	}
 }
