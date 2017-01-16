@@ -80,5 +80,9 @@ public static class TestAnimations
 
 		tackle = new SimpleAnimation(frames);
 		Debug.Log(tackle.ToString());
+
+		//Create the tackle animation using its own ToString
+		tackle = new SimpleAnimation(tackle.ToString());
 	}
+
 }

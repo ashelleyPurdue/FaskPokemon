@@ -38,7 +38,7 @@ namespace SimpleAnimationSystem
 			string noSpaces = string.Join("", srcStr.Split(default(string[]), System.StringSplitOptions.RemoveEmptyEntries));
 
 			//Split into commands
-			string[] commands = noSpaces.Split(';');
+			string[] commands = noSpaces.Split(new char[] {';'}, System.StringSplitOptions.RemoveEmptyEntries);
 
 			//Execute every command
 			for (int i = 0; i < commands.Length; i++)
