@@ -1,3 +1,4 @@
+earlyFinishLen = 0.2;
 	pos = (0, 0, 0);
 	scale = (1, 1, 1);
 	rotEuler = (0, 0, 0);

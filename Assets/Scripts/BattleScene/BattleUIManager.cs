@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleUIManager : MonoBehaviour
 {
-    public float useMoveDelay = 1f;         //How long to pause after using a move
+    public float useMoveDelay = 0.75f;         //How long to pause after using a move
 
     public DiffableHealthBar playerHealthBar;
     public DiffableHealthBar enemyHealthBar;

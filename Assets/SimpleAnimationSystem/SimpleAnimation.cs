@@ -7,13 +7,17 @@ namespace SimpleAnimationSystem
 {
     public class SimpleAnimation
     {
+		public const string EARLY_FINISH_COMMAND = "earlyFinishLen";
 		public const string OFFSET_COMMAND = "offset";
 		public const string POS_COMMAND = "pos";
 		public const string SCALE_COMMAND = "scale";
 		public const string EULER_ROT_COMMAND = "rotEuler";
 
         public int numKeyframes { get { return keyframes.Count; } }
+
         public float animationLen { get; private set; }
+		public float earlyFinishLen { get; private set; }			//Sometimes, you'll want to do something when the animation is "almost" done.  This tells you
+																	//when that is.  By default, it's equal to animationLen.
 
         private List<KeyFrame> keyframes;
 
@@ -23,15 +27,27 @@ namespace SimpleAnimationSystem
         public SimpleAnimation(List<KeyFrame> keyframes)
         {
             this.keyframes = keyframes;
-            animationLen = CalculateAnimationLength();
+
+			animationLen = CalculateAnimationLength();
+			earlyFinishLen = animationLen;
         }
+
+		public SimpleAnimation(List<KeyFrame> keyframes, float earlyFinishLen)
+		{
+			this.keyframes = keyframes;
+
+			animationLen = CalculateAnimationLength();
+			this.earlyFinishLen = earlyFinishLen;
+		}
 
 		public SimpleAnimation(string srcStr)
 		{
 			//Creates the animation from the given source string
 
 			keyframes = new List<KeyFrame>();
-			KeyFrame currentKeyframe = new KeyFrame(0, new Transformation());
+
+			bool foundEarlyFinish = false;										//If we haven't found an early finish command, we'll set earlyFinishLen to animationLen.
+			KeyFrame currentKeyframe = new KeyFrame(0, new Transformation()); 
 
 			//Clean out the spaces
 			//Taken from http://stackoverflow.com/questions/6219454/efficient-way-to-remove-all-whitespace-from-string/14591148#14591148
@@ -73,6 +89,12 @@ namespace SimpleAnimationSystem
 					//Set the rot
 					currentKeyframe.transformation.rotation = Quaternion.Euler(Vector3FromString(argument));
 				}
+				else if (command.Equals(EARLY_FINISH_COMMAND))
+				{
+					//Set early finish, and note that we've found one.
+					earlyFinishLen = float.Parse(argument);
+					foundEarlyFinish = true;
+				}
 				else
 				{
 					//Throw an exception, because this is not a known command
@@ -85,7 +107,14 @@ namespace SimpleAnimationSystem
 
 			//Calculate animation len
 			animationLen = CalculateAnimationLength();
+
+			//If we haven't found an early finish command, default it to animationLen
+			if (!foundEarlyFinish)
+			{
+				earlyFinishLen = animationLen;
+			}
 		}
+
 
 		//Interface
 
@@ -142,6 +171,12 @@ namespace SimpleAnimationSystem
 			//Converts this animation to a string
 
 			StringBuilder builder = new StringBuilder();
+
+			//Append the early finish time, if it's different from the animation length
+			if (earlyFinishLen != animationLen)
+			{
+				builder.AppendLine(EARLY_FINISH_COMMAND + " = " + earlyFinishLen + ";");
+			}
 
 			//Append the first frame
 			Transformation trans = keyframes[0].transformation;
