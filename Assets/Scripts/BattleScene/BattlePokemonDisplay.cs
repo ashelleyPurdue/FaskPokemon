@@ -69,8 +69,8 @@ public static class TestAnimations
 	static TestAnimations()
 	{
 		//Load the tackle animation
-		TextAsset tackleFile = Resources.Load<TextAsset>("SimpleAnimations/tackle");
-		tackle = new SimpleAnimation(tackleFile.text);
+		string tackleText = System.IO.File.ReadAllText("moddable_data/tackle.txt");
+		tackle = new SimpleAnimation(tackleText);
 	}
 
 }
