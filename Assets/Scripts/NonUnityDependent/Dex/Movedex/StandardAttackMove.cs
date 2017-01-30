@@ -13,7 +13,7 @@ public class StandardAttackMove : MovedexEntry
     public int power;
     public int accuracy;        //For reference, most moves have 100 accuracy
 
-    public StandardAttackMove(DexID id, string moveName, string moveDescription, int genericAnimationID, PokemonType type, MoveCategory moveCategory, int basePP, int power, int accuracy)
+    public StandardAttackMove(DexID id, string moveName, string moveDescription, DexID genericAnimationID, PokemonType type, MoveCategory moveCategory, int basePP, int power, int accuracy)
         : base(id, moveName, moveDescription, genericAnimationID, type, moveCategory, basePP)
     {
         this.power = power;

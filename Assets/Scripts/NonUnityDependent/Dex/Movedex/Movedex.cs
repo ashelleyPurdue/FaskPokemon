@@ -6,15 +6,15 @@ public static class Movedex
 
     static Movedex()
     {
-        //Add some basic moves
+		//Add some basic moves
 
-        //Tackle
+		//Tackle
         StandardAttackMove tackle = new StandardAttackMove
             (
                 new DexID("", 1),
                 "Tackle",
                 "The goomba of Pokemon moves",
-                1,
+                new DexID("", 0),
                 PokemonType.normal,
                 MoveCategory.physical,
                 35,

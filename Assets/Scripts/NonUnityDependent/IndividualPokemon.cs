@@ -43,6 +43,9 @@ public class IndividualPokemon
     public int exp { get; private set; }
 
     public const int MAX_KNOWN_MOVES = 4;
+
+	public int knownMovesCount { get { return knownMoves.Count; } }
+
     private List<IndividualPokemonMove> knownMoves;
 
     //Battle info
@@ -84,7 +87,7 @@ public class IndividualPokemon
 
         //Learn the move
         IndividualPokemonMove indMove = new IndividualPokemonMove(moveID, 0);
-        knownMoves.Add(indMove);
+		knownMoves.Add(indMove);
     }
 
     public void ForgetMove(IndividualPokemonMove move)
@@ -95,16 +98,8 @@ public class IndividualPokemon
 
     public IndividualPokemonMove GetMove(int i)
     {
-        //Gets the ith move
-        //If the pokemon doesn't know that many moves, returns null.
-
-        //Return null if the pokemon doesn't know that many moves
-        if (i >= knownMoves.Count)
-        {
-            return null;
-        }
-
-        return knownMoves[i];
+		//Gets the ith move
+		return knownMoves[i];
     }
 
 

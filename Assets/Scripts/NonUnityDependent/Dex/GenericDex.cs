@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 public class GenericDex<T>
 {
@@ -12,7 +13,7 @@ public class GenericDex<T>
             throw new DuplicateIDException();
         }
 
-        //Add it
+		//Add it
         entries.Add(id, entry);
     }
 
@@ -21,6 +22,19 @@ public class GenericDex<T>
         return entries[id];
     }
 
+	public string DebugPrintAllIds()
+	{
+		//Returns a string of all DexIDs in the dex, for debugging purposes
+
+		StringBuilder builder = new StringBuilder();
+
+		foreach (DexID id in entries.Keys)
+		{
+			builder.AppendLine(id.ToString());
+		}
+
+		return builder.ToString();
+	}
 
     //Exceptions
     public class DuplicateIDException : System.Exception { }

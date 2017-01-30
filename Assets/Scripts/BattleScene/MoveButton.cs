@@ -32,14 +32,21 @@ public class MoveButton : MonoBehaviour
     private void UpdateButton()
     {
         //Updates the button text, clickability, etc.
+
+		//If it's out of bounds, disable the button
+		if (moveNum >= battleUIManager.playerPokemon.knownMovesCount)
+		{
+			DisableButton();
+			return;
+		}
+
+		//Get the move
         IndividualPokemonMove move = battleUIManager.playerPokemon.GetMove(moveNum);
 
         //If the move is null, disable button
         if (move == null)
         {
-            text.text = "--";
-            button.interactable = false;
-
+			DisableButton();
             return;
         }
 
@@ -54,4 +61,10 @@ public class MoveButton : MonoBehaviour
             button.interactable = false;
         }
     }
+
+	private void DisableButton()
+	{
+		text.text = "--";
+		button.interactable = false;
+	}
 }

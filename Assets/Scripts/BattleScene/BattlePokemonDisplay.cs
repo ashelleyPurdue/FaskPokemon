@@ -39,13 +39,14 @@ public class BattlePokemonDisplay : MonoBehaviour
         flasher.StartFlashing();
     }
 
-    public float GenericMoveAnimation(int animID)
+    public float GenericMoveAnimation(DexID animID)
     {
 		//TODO: Start one of the generic animations
 		//Returns the animation's early finish length
 
 		//TODO: Decide which animation to start based on animID
 		SimpleAnimation anim = TestAnimations.tackle;
+		anim = BattleAnimationDex.GetEntry(animID);
 
 		//Start the animation
 		animPlayer.PlayAnimation(anim);
@@ -71,6 +72,8 @@ public static class TestAnimations
 		//Load the tackle animation
 		string tackleText = System.IO.File.ReadAllText("moddable_data/tackle.txt");
 		tackle = new SimpleAnimation(tackleText);
+
+		BattleAnimationDex.AddEntry(new DexID("", 0), tackle);
 	}
 
 }
